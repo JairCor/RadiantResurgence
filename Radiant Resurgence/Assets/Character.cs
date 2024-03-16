@@ -16,9 +16,19 @@ public class Character : MonoBehaviour
     [Header("Audio")]
     AudioSource gunShotAudio;
 
+    [Header("Flavor")]
+    //[SerializeField] string characterName = "Kyle";
+    [SerializeField] public Sprite upSprite;
+    [SerializeField] public Sprite downSprite;
+    [SerializeField] public Sprite leftSprite;
+    [SerializeField] public Sprite rightSprite;
+    private SpriteRenderer spriteRenderer;
+    
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = transform.Find("Body").GetComponent<SpriteRenderer>();
     }
     void Start()
     {   //setting home position where i left it on the scene
@@ -34,11 +44,19 @@ public class Character : MonoBehaviour
         // Flip sprite based on movement direction
         if (rb.velocity.x < 0)
         {
-            body.transform.localScale = new Vector3(-1, 1, 1);
+            spriteRenderer.sprite = leftSprite;
         }
         else if (rb.velocity.x > 0)
         {
-            body.transform.localScale = new Vector3(1, 1, 1);
-            }
+            spriteRenderer.sprite = rightSprite;
+        }
+        else if(rb.velocity.y < 0)
+        {
+            spriteRenderer.sprite = downSprite;
+        }
+        else if(rb.velocity.y > 0)
+        {
+            spriteRenderer.sprite = upSprite;
+        }
     }
 }
