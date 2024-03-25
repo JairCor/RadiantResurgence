@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 public class Mutant : MonoBehaviour
 {
     [Header("Stats")]
-    [SerializeField] private float health = 100f;
+    [SerializeField] private float maxHealth = 100f;
     [SerializeField] private float damage = 10f;
+    [SerializeField] private float damageCooldown = 1f; // To prevent weird unexpected outcomes where you instantly die
     [SerializeField] private float speed = 7f;
-
+    private float currentHealth;
+    private float lastDamageTime;
 
     [Header("Positional Data")]
     [SerializeField] Vector3 homePosition = Vector3.zero;
@@ -27,15 +29,14 @@ public class Mutant : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer == null)
-        {
-            Debug.LogError("SpriteRenderer component not found on Walker child GameObject.");
-        }
     }
+
     void Start()
     {
         homePosition = transform.position; 
+        currentHealth = maxHealth;
     } 
+
     public void MoveMutant(Vector3 direction){
         direction = direction.normalized;
         rb.velocity = direction * speed;
@@ -43,7 +44,7 @@ public class Mutant : MonoBehaviour
         float horizontalMovement = Mathf.Abs(rb.velocity.x);
         float verticalMovement = Mathf.Abs(rb.velocity.y);
 
-        // Finding dominant movement, then changing sprites accordingly
+        //Finding dominant movement, then changing sprites accordingly, it was doing weird bugs otherwise
         if (horizontalMovement > verticalMovement)
         {
             if (rb.velocity.x < 0)
@@ -59,9 +60,42 @@ public class Mutant : MonoBehaviour
                 spriteRenderer.sprite = upSprite;
         }
     }
+
     public void MoveMutantToward(Vector3 target){
         Vector3 direction = target - transform.position;
         MoveMutant(direction.normalized);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+            Die();
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Character") && Time.time > lastDamageTime + damageCooldown)
+        {
+            Character character = collision.gameObject.GetComponent<Character>();
+            if (character != null)
+            {
+                character.TakeDamage(damage);
+                StartCoroutine(FlashCharacter(character));
+                lastDamageTime = Time.time;
+            }
+        }
+    }
+
+    IEnumerator FlashCharacter(Character character)
+    {
+        character.FlashRed();
+        yield return new WaitForSeconds(0.2f);
     }
 
 }

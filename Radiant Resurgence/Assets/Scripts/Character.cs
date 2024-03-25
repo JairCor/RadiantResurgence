@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 public class Character : MonoBehaviour
 {
     [Header("Stats")]
-    [SerializeField] private float health = 100f;
+    [SerializeField] private float maxHealth = 100f;
     [SerializeField] private float speed = 7f;
     [SerializeField] private float stamina = 100f;
+    private float currentHealth;
 
     [Header("Positional Data")]
     [SerializeField] Vector3 homePosition = Vector3.zero;
@@ -31,20 +32,25 @@ public class Character : MonoBehaviour
     [SerializeField] private Transform bulletSpawnPoint;
     [SerializeField] private float bulletSpeed = 10f;
     
+    [Header("Red Flash")]
+    [SerializeField] private float flashDuration = 0.2f; // Duration of the flash
+    private Color originalColor;
+    
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = transform.Find("Body").GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
     }
     void Start()
     {   //setting home position where i left it on the scene
         homePosition = transform.position; 
+        currentHealth = maxHealth;
     } 
 
     public void MoveCharacter(Vector3 direction)
     {
-
         direction = direction.normalized;
         rb.velocity = direction * speed;
 
@@ -69,5 +75,30 @@ public class Character : MonoBehaviour
     
     public void Shoot()
     {
+    }
+    
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+
+        // Flash red to indicate damage
+        StartCoroutine(FlashRed());
+        Debug.Log(currentHealth);
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    public IEnumerator FlashRed()
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(flashDuration);
+        spriteRenderer.color = originalColor;
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);// Will have to implement a dying animation and a screen to restart or quit
     }
 }
