@@ -10,6 +10,7 @@ public class Character : MonoBehaviour
     [SerializeField] private float speed = 7f;
     [SerializeField] private float stamina = 100f;
     private float currentHealth;
+    private float originalSpeed;
 
     [Header("Positional Data")]
     [SerializeField] Vector3 homePosition = Vector3.zero;
@@ -49,6 +50,7 @@ public class Character : MonoBehaviour
     {   //setting home position where i left it on the scene
         homePosition = transform.position; 
         currentHealth = maxHealth;
+        originalSpeed = speed;
     } 
 
     public void MoveCharacter(Vector3 direction)
@@ -74,7 +76,20 @@ public class Character : MonoBehaviour
             spriteRenderer.sprite = upSprite;
         }
     }
+    public void StartSprint()
+    {
+        speed = originalSpeed * 1.5f;
+    }
+    public void EndSprint()
+    {
+        speed = originalSpeed;
+    }
     
+
+
+
+
+
     public void Shoot()
     {
     }
