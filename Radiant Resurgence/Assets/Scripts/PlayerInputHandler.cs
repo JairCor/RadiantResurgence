@@ -16,6 +16,10 @@ public class PlayerInputHandler : MonoBehaviour
     {
         Vector3 input = Vector3.zero;
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            character.Shoot();
+        }
         if(Input.GetKey(KeyCode.A))
         {
             input.x += -1;
