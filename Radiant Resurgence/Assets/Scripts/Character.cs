@@ -20,7 +20,7 @@ public class Character : MonoBehaviour
     AudioSource gunShotAudio;
 
     [Header("Flavor")]
-    [SerializeField] public string name = "Layton";
+    [SerializeField] public string name = "Classified";
     [SerializeField] public Sprite upSprite;
     [SerializeField] public Sprite downSprite;
     [SerializeField] public Sprite leftSprite;
@@ -33,8 +33,10 @@ public class Character : MonoBehaviour
     [SerializeField] private float bulletSpeed = 10f;
     
     [Header("Red Flash")]
-    [SerializeField] private float flashDuration = 0.2f; // Duration of the flash
+    [SerializeField] private float flashDuration = 0.2f;
     private Color originalColor;
+
+    [SerializeField] DeathHandler deathHandler;
     
 
     void Awake()
@@ -80,8 +82,6 @@ public class Character : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-
-        // Flash red to indicate damage
         StartCoroutine(FlashRed());
         Debug.Log(currentHealth);
         if (currentHealth <= 0)
@@ -99,6 +99,6 @@ public class Character : MonoBehaviour
 
     void Die()
     {
-        Destroy(gameObject);// Will have to implement a dying animation and a screen to restart or quit
+        deathHandler.HandleDeath();
     }
 }
