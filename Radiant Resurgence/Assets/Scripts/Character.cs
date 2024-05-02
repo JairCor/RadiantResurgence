@@ -26,7 +26,10 @@ public class Character : MonoBehaviour
     [SerializeField] public Sprite downSprite;
     [SerializeField] public Sprite leftSprite;
     [SerializeField] public Sprite rightSprite;
+    [SerializeField] private float ar15OffsetX = 0.1f;
     private SpriteRenderer spriteRenderer;
+    private SpriteRenderer ar15Renderer;
+
     
     [Header("Shooting")]
     [SerializeField] private GameObject bulletPrefab;
@@ -44,6 +47,7 @@ public class Character : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = transform.Find("Body").GetComponent<SpriteRenderer>();
+        ar15Renderer = transform.Find("ar15").GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
     }
     void Start()
@@ -61,18 +65,26 @@ public class Character : MonoBehaviour
         // Flip sprite based on movement direction
         if (rb.velocity.x < 0)
         {
+            ar15Renderer.gameObject.SetActive(true);
             spriteRenderer.sprite = leftSprite;
+            ar15Renderer.flipX = true;
+            ar15Renderer.transform.localPosition = new Vector3(-ar15OffsetX, ar15Renderer.transform.localPosition.y, ar15Renderer.transform.localPosition.z);
         }
         else if (rb.velocity.x > 0)
         {
+            ar15Renderer.gameObject.SetActive(true);
             spriteRenderer.sprite = rightSprite;
+            ar15Renderer.flipX = false;
+            ar15Renderer.transform.localPosition = new Vector3(ar15OffsetX, ar15Renderer.transform.localPosition.y, ar15Renderer.transform.localPosition.z);
         }
         else if(rb.velocity.y < 0)
         {
+            ar15Renderer.gameObject.SetActive(false);
             spriteRenderer.sprite = downSprite;
         }
         else if(rb.velocity.y > 0)
         {
+            ar15Renderer.gameObject.SetActive(false);
             spriteRenderer.sprite = upSprite;
         }
     }

@@ -47,6 +47,39 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &-3259904539647339998
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: ab07ee5fa57913147a0224509dad3379
+  m_EffectName: Attenuation
+  m_MixLevel: b709c428e15c9f1438232a2040dda126
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!243 &-2564013063516962334
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Ambience
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 929555e9fe1b2894eacdad26e88db9d4
+  m_Children: []
+  m_Volume: d8dd19bb6ba2b5446a494de4c0237e08
+  m_Pitch: 4acaebf69d0a3af45883bdd11742809e
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -3259904539647339998}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!241 &24100000
 AudioMixerController:
   m_ObjectHideFlags: 0
@@ -68,6 +101,7 @@ AudioMixerController:
     - a3e613a549171b44bb3ff2ebe4833a46
     - 8f153450b10b4484581b59b4960c7853
     - 48b7373b8e45cf0428240edd43404255
+    - 929555e9fe1b2894eacdad26e88db9d4
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -83,6 +117,7 @@ AudioMixerGroupController:
   m_Children:
   - {fileID: -6870410693112340247}
   - {fileID: 2137015146219750243}
+  - {fileID: -2564013063516962334}
   m_Volume: 3c4bb21df85eb49409e3a8988a493f24
   m_Pitch: 67f2a6f2901c6374c97d626fa60a943d
   m_Send: 00000000000000000000000000000000
@@ -118,6 +153,7 @@ AudioMixerSnapshotController:
   m_FloatValues:
     24dc7ad7b8a7eda4aae08fba918a9700: -5.3230715
     7c28268a054d34f4e9e5b023aff6a77d: -19.928473
+    d8dd19bb6ba2b5446a494de4c0237e08: -31.129898
     3c4bb21df85eb49409e3a8988a493f24: -0.22173342
   m_TransitionOverrides: {}
 --- !u!243 &2137015146219750243
