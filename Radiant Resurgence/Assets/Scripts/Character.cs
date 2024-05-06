@@ -17,8 +17,6 @@ public class Character : MonoBehaviour
     [SerializeField] private GameObject body;
     Rigidbody2D rb;
 
-    [Header("Audio")]
-    AudioSource gunShotAudio;
 
     [Header("Flavor")]
     [SerializeField] public string name = "Classified";
@@ -29,12 +27,7 @@ public class Character : MonoBehaviour
     [SerializeField] private float ar15OffsetX = 0.1f;
     private SpriteRenderer spriteRenderer;
     private SpriteRenderer ar15Renderer;
-
     
-    [Header("Shooting")]
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Transform bulletSpawnPoint;
-    [SerializeField] private float bulletSpeed = 10f;
     
     [Header("Red Flash")]
     [SerializeField] private float flashDuration = 0.2f;
@@ -65,26 +58,26 @@ public class Character : MonoBehaviour
         // Flip sprite based on movement direction
         if (rb.velocity.x < 0)
         {
-            ar15Renderer.gameObject.SetActive(true);
+            ar15Renderer.enabled = true;
             spriteRenderer.sprite = leftSprite;
             ar15Renderer.flipX = true;
             ar15Renderer.transform.localPosition = new Vector3(-ar15OffsetX, ar15Renderer.transform.localPosition.y, ar15Renderer.transform.localPosition.z);
         }
         else if (rb.velocity.x > 0)
         {
-            ar15Renderer.gameObject.SetActive(true);
+            ar15Renderer.enabled = true;
             spriteRenderer.sprite = rightSprite;
             ar15Renderer.flipX = false;
             ar15Renderer.transform.localPosition = new Vector3(ar15OffsetX, ar15Renderer.transform.localPosition.y, ar15Renderer.transform.localPosition.z);
         }
         else if(rb.velocity.y < 0)
         {
-            ar15Renderer.gameObject.SetActive(false);
+            ar15Renderer.enabled = false;
             spriteRenderer.sprite = downSprite;
         }
         else if(rb.velocity.y > 0)
         {
-            ar15Renderer.gameObject.SetActive(false);
+            ar15Renderer.enabled = false;
             spriteRenderer.sprite = upSprite;
         }
     }
