@@ -4,9 +4,11 @@ public class DeathHandler : MonoBehaviour
 {
     [SerializeField] private GameObject deathScreen;
     [SerializeField] private GameObject playerInput;
+    [SerializeField] private AudioSource deathSfx;
     public void HandleDeath()
     {
         Time.timeScale = 0;
+        deathSfx.Play();
         deathScreen.SetActive(true);
         playerInput.SetActive(false);
     }
@@ -24,5 +26,10 @@ public class DeathHandler : MonoBehaviour
         SceneManager.LoadScene("Game");
         Time.timeScale = 1;
         
+    }
+    public void Menu(){
+        playerInput.SetActive(false);
+        SceneManager.LoadScene("Main Menu");
+        Time.timeScale = 1;
     }
 }
