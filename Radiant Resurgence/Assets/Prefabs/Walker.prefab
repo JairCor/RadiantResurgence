@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5170288884596191273}
   - component: {fileID: 9181718807329257293}
   - component: {fileID: 113666513172315124}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Walker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,16 +99,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96aff9ea599039341b5da684e05b0620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  maxHealth: 100
   damage: 10
-  speed: 7
+  damageCooldown: 1
+  speed: 2
   homePosition: {x: 0, y: 0, z: 0}
-  body: {fileID: 0}
   name: Walker
   upSprite: {fileID: 389160712, guid: 6b99a9a9a18924445b5b062a4356d8ab, type: 3}
   downSprite: {fileID: 1530640413, guid: 6b99a9a9a18924445b5b062a4356d8ab, type: 3}
   leftSprite: {fileID: 1108800525, guid: 6b99a9a9a18924445b5b062a4356d8ab, type: 3}
   rightSprite: {fileID: -1260501098, guid: 6b99a9a9a18924445b5b062a4356d8ab, type: 3}
+  bulletPrefab: {fileID: 65305940681078681, guid: af0f6441bebe4e74e95b81d948dc0da7, type: 3}
+  spriteRenderer: {fileID: 3685522261840379684}
+  rb: {fileID: 9181718807329257293}
 --- !u!50 &9181718807329257293
 Rigidbody2D:
   serializedVersion: 4
@@ -117,11 +120,11 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8697733581010890028}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -135,7 +138,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!60 &113666513172315124
 PolygonCollider2D:
   m_ObjectHideFlags: 0

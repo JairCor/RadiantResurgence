@@ -25,6 +25,7 @@ public class Character : MonoBehaviour
     [SerializeField] public Sprite leftSprite;
     [SerializeField] public Sprite rightSprite;
     [SerializeField] private float ar15OffsetX = 0.1f;
+    [SerializeField] private AudioSource damageSFX;
     private SpriteRenderer spriteRenderer;
     private SpriteRenderer ar15Renderer;
     
@@ -102,10 +103,10 @@ public class Character : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        damageSFX.Play();
         StartCoroutine(FlashRed());
         Debug.Log(currentHealth);
-        if (currentHealth <= 0)
-        {
+        if (currentHealth <= 0){
             Die();
         }
     }

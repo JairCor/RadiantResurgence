@@ -15,7 +15,6 @@ public class Mutant : MonoBehaviour
 
     [Header("Positional Data")]
     [SerializeField] Vector3 homePosition = Vector3.zero;
-    Rigidbody2D rb;
 
     [Header("Flavor")]
     [SerializeField] public string name = "Walker";
@@ -23,12 +22,18 @@ public class Mutant : MonoBehaviour
     [SerializeField] public Sprite downSprite;
     [SerializeField] public Sprite leftSprite;
     [SerializeField] public Sprite rightSprite;
-    private SpriteRenderer spriteRenderer;
-    
+    [SerializeField] private GameObject bulletPrefab; // Reference to the bullet prefab
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private GameManager gameManager;
+
+    [Header("Red Flash")]
+    [SerializeField] private float flashDuration = 0.2f;
+    private Color originalColor;
+
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
     }
 
     void Start()
@@ -68,9 +73,12 @@ public class Mutant : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        StartCoroutine(FlashRed());
         currentHealth -= damage;
-        if (currentHealth <= 0)
+        if (currentHealth <= 0){
+            gameManager.OnMutantDeath();
             Die();
+        }
     }
 
     private void Die()
@@ -80,22 +88,29 @@ public class Mutant : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Character") && Time.time > lastDamageTime + damageCooldown)
-        {
+        //logic for character and mutant collision
+        if (collision.gameObject.CompareTag("Character") && Time.time > lastDamageTime + damageCooldown){
             Character character = collision.gameObject.GetComponent<Character>();
             if (character != null)
             {
                 character.TakeDamage(damage);
-                StartCoroutine(FlashCharacter(character));
                 lastDamageTime = Time.time;
+            }
+        }
+
+        //logic for bullet and mutant collision
+        if (collision.gameObject.CompareTag("Bullet")){
+            if (bulletPrefab != null){
+                Destroy(collision.gameObject); // Destroy the bullet on impact
+                TakeDamage(25f);
             }
         }
     }
 
-    IEnumerator FlashCharacter(Character character)
+    public IEnumerator FlashRed()
     {
-        character.FlashRed();
-        yield return new WaitForSeconds(0.2f);
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(flashDuration);
+        spriteRenderer.color = originalColor;
     }
-
 }

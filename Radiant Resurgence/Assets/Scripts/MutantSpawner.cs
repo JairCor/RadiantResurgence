@@ -8,22 +8,17 @@ public class MutantSpawner : MonoBehaviour
     [SerializeField] private float spawnInterval = 3f;
     [SerializeField] private float spawnXRange = 7f;
     [SerializeField] private float spawnYRange = 2f;
-    private float timer = 0f;
+    private GameObject newWalker;
 
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer >= spawnInterval)
-        {
-            SpawnWalker();
-            timer = 0f;
-        }
     }
 
-    void SpawnWalker()
+    public void SpawnWalker()
     {
         Vector3 spawnPosition = GetRandomSpawnPosition();
-        GameObject newWalker = Instantiate(mutantPrefab, spawnPosition, Quaternion.identity);
+        newWalker = Instantiate(mutantPrefab, spawnPosition, Quaternion.identity);
+        newWalker.SetActive(true);
     }
 
 

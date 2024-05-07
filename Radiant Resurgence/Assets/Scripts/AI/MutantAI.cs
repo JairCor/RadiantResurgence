@@ -10,6 +10,10 @@ public class MutantAI : MonoBehaviour
     MutantAIState currentState;
     public MutantAIChaseState chaseState{get; private set;}
     public MutantAIDieState dieState{get; private set;}
+    void Update(){
+        if(mutant == null || this == null)
+            return;
+    }
 
     public void ChangeState(MutantAIState newState){
         currentState = newState;
@@ -31,8 +35,7 @@ public class MutantAI : MonoBehaviour
         if(Vector3.Distance(transform.position, targetCharacter.transform.position) < 1000){
             return targetCharacter;
         }
-        else{
+        else
             return null;
-        }
     }
 }

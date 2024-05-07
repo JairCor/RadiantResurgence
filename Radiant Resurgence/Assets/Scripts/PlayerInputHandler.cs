@@ -4,20 +4,16 @@ using UnityEngine;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-
+    //references to scripts
     [SerializeField] Character character;
-    // Start is called before the first frame update
-    void Start()
-    {
+    [SerializeField] AR15 ar15;
 
-    }
     // Update is called once per frame
     void Update()
     {
         Vector3 input = Vector3.zero;
-
         if (Input.GetMouseButtonDown(0))                     
-            character.Shoot();
+            ar15.Shoot();
         if(Input.GetKey(KeyCode.A))
             input.x += -1;
         if(Input.GetKey(KeyCode.D))
