@@ -3,11 +3,12 @@ using UnityEngine.SceneManagement;
 public class DeathHandler : MonoBehaviour
 {
     [SerializeField] private GameObject deathScreen;
+    [SerializeField] private GameObject playerInput;
     public void HandleDeath()
     {
         Time.timeScale = 0;
         deathScreen.SetActive(true);
-        Debug.Log("Character has died. Death screen should appear.");
+        playerInput.SetActive(false);
     }
     public void Awake()
     {

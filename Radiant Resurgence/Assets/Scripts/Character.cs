@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Character : MonoBehaviour
 {
     [Header("Stats")]
+    [SerializeField] HealthManager healthManager;
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private float speed = 7f;
     [SerializeField] private float stamina = 100f;
@@ -33,7 +34,6 @@ public class Character : MonoBehaviour
     [Header("Red Flash")]
     [SerializeField] private float flashDuration = 0.2f;
     private Color originalColor;
-
     [SerializeField] DeathHandler deathHandler;
     
 
@@ -103,6 +103,7 @@ public class Character : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        healthManager.TakeDamage(damage);
         damageSFX.Play();
         StartCoroutine(FlashRed());
         Debug.Log(currentHealth);

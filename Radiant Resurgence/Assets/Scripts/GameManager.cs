@@ -1,9 +1,12 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private MutantSpawner mutantSpawner; 
+    [SerializeField] private MutantSpawner mutantSpawner;
+    [SerializeField] private TextMeshProUGUI killCounterText;
+    [SerializeField] private TextMeshProUGUI waveCounterText;
     private int currentWave = 1;
     private int totalMutantsKilled = 0;
     private int mutantsPerWave = 0;
@@ -34,23 +37,19 @@ public class GameManager : MonoBehaviour
     public void OnMutantDeath()
     {
         totalMutantsKilled++;
+        killCounterText.text = totalMutantsKilled.ToString();
         mutantsKilledThisRound++;
         Debug.Log("Mutant killed! Total killed: " + totalMutantsKilled);
 
         if (mutantsKilledThisRound >= mutantsPerWave){
             currentWave++;
+            waveCounterText.text = currentWave.ToString();
             StartNextWave();
         }
     }
 
-    Vector3 GetRandomSpawnPosition()
-    {
-        // Implement logic to get a random spawn position
-        return Vector3.zero; // For simplicity, return origin position
-    }
-
     IEnumerator WaitTime()
     {
-        yield return new WaitForSeconds(20f);
+        yield return new WaitForSeconds(5f);
     }
 }

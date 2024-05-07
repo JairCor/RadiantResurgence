@@ -10,7 +10,7 @@ public class MutantAIDieState : MutantAIState
 
     public override void BeginState()
     {
-       // mutantAI.mutant.GetComponent<SpriteRenderer>().color = Color.red;
+        //mutantAI.mutant.GetComponent<SpriteRenderer>().color = Color.red;
     }
 
     public override void UpdateState()
