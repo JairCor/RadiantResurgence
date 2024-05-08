@@ -1833,7 +1833,7 @@ GameObject:
   - component: {fileID: 806504953}
   - component: {fileID: 806504954}
   m_Layer: 5
-  m_Name: WindAmbienceVolumeSlider
+  m_Name: MutantsVolumeSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1915,7 +1915,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1389727399}
         m_TargetAssemblyTypeName: VolumeSettings, Assembly-CSharp
-        m_MethodName: SetWindVolume
+        m_MethodName: SetMutantVolume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4141,7 +4141,7 @@ MonoBehaviour:
   musicSlider: {fileID: 1685911242}
   sfxSlider: {fileID: 136168182}
   radioSlider: {fileID: 991776707}
-  windSlider: {fileID: 806504954}
+  mutantSlider: {fileID: 806504954}
 --- !u!4 &1389727400
 Transform:
   m_ObjectHideFlags: 0
@@ -4559,7 +4559,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -19, y: 12.5}
+  m_AnchoredPosition: {x: -55.1, y: 12}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1611030888
@@ -4582,7 +4582,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Wind Volume
+  m_text: Mutants Volume
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}

@@ -12,7 +12,7 @@ public class VolumeSettings : MonoBehaviour
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
     [SerializeField] private Slider radioSlider;
-    [SerializeField] private Slider windSlider;
+    [SerializeField] private Slider mutantSlider;
 
 
     //Using PlayerRefs to store their volume settings so they wont reset between scenes
@@ -26,7 +26,7 @@ public class VolumeSettings : MonoBehaviour
             SetMusicVolume();
             SetSFXVolume();
             SetRadioVolume();
-            SetWindVolume();
+            SetMutantVolume();
         }
     }
 
@@ -58,11 +58,11 @@ public class VolumeSettings : MonoBehaviour
         PlayerPrefs.SetFloat("radioVolume", volume);
     }
 
-    public void SetWindVolume()
+    public void SetMutantVolume()
     {
-        float volume = windSlider.value;
-        myMixer.SetFloat("Wind", Mathf.Log10(volume)*20);
-        PlayerPrefs.SetFloat("windVolume", volume);
+        float volume = mutantSlider.value;
+        myMixer.SetFloat("Mutants", Mathf.Log10(volume)*20);
+        PlayerPrefs.SetFloat("mutantVolume", volume);
     }
 
     private void LoadVolume()
@@ -71,13 +71,13 @@ public class VolumeSettings : MonoBehaviour
         musicSlider.value = PlayerPrefs.GetFloat("musicVolume");
         sfxSlider.value = PlayerPrefs.GetFloat("sfxVolume");
         radioSlider.value = PlayerPrefs.GetFloat("radioVolume");
-        windSlider.value = PlayerPrefs.GetFloat("windVolume");
+        mutantSlider.value = PlayerPrefs.GetFloat("mutantVolume");
 
         SetMasterVolume();
         SetMusicVolume();
         SetSFXVolume();
         SetRadioVolume();
-        SetWindVolume();
+        SetMutantVolume();
     }
 
 }
