@@ -15,11 +15,11 @@ public class HealthManager : MonoBehaviour
         healthAmount -= damage;
         healthBar.fillAmount = healthAmount / 100f;
     }
-    public void Heal(float healingAmount)
+    public void Heal()
     {
-        healthAmount += healingAmount;
+        healthAmount = 100f;
         healthAmount = Mathf.Clamp(healthAmount, 0, 100);
-
         healthBar.fillAmount = healthAmount / 100f;
+
     }
 }

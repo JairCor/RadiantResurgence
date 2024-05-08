@@ -101,6 +101,11 @@ public class Character : MonoBehaviour
             Die();
         }
     }
+    public void Heal()
+    {
+        currentHealth = maxHealth;
+        healthManager.Heal();
+    }
 
     public IEnumerator FlashRed()
     {
