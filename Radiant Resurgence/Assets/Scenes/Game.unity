@@ -422,7 +422,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -6870410693112340247, guid: 8017e89836bd4d54e85c3e12341c2aa6, type: 2}
   m_audioClip: {fileID: 8300000, guid: c1cfc7e7ef4016848aa64cb2e648bcda, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.908
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1361,6 +1361,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7279749299176939388, guid: ba2e8e7492e4c1d41a1b5d876f4460e6, type: 3}
   m_PrefabInstance: {fileID: 1506808477}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &480837606
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480837592}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ff7837258f5a7e74f9972d33fe0355b6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2561,7 +2582,7 @@ Transform:
   m_GameObject: {fileID: 1011910796}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.85, y: -6.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3768,6 +3789,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5170288884596191273, guid: ba2e8e7492e4c1d41a1b5d876f4460e6, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 480837606}
+    - target: {fileID: 5170288884596191273, guid: ba2e8e7492e4c1d41a1b5d876f4460e6, type: 3}
       propertyPath: upSprite
       value: 
       objectReference: {fileID: 1942396996, guid: 6b99a9a9a18924445b5b062a4356d8ab, type: 3}
@@ -3862,6 +3887,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8697733581010890028, guid: ba2e8e7492e4c1d41a1b5d876f4460e6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 480837598}
+    - targetCorrespondingSourceObject: {fileID: 8697733581010890028, guid: ba2e8e7492e4c1d41a1b5d876f4460e6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 480837606}
   m_SourcePrefab: {fileID: 100100000, guid: ba2e8e7492e4c1d41a1b5d876f4460e6, type: 3}
 --- !u!1 &1543629690
 GameObject:
@@ -4935,6 +4963,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7207820992494332873, guid: 4f8786d434b02fe4b821a1a457474988, type: 3}
   m_PrefabInstance: {fileID: 1533345741530096563}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &77389702508394379 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1638302589923010048, guid: 4f8786d434b02fe4b821a1a457474988, type: 3}
+  m_PrefabInstance: {fileID: 1533345741530096563}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &535576232715605263 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3140752718028188217, guid: 4f8786d434b02fe4b821a1a457474988, type: 3}
@@ -4956,6 +4989,10 @@ PrefabInstance:
       propertyPath: body
       value: 
       objectReference: {fileID: 535576232715605263}
+    - target: {fileID: 5253253429419346232, guid: 4f8786d434b02fe4b821a1a457474988, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 77389702508394379}
     - target: {fileID: 5253253429419346232, guid: 4f8786d434b02fe4b821a1a457474988, type: 3}
       propertyPath: damageSFX
       value: 
@@ -5023,9 +5060,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 1917764521}
-  - {fileID: 660416067}
   - {fileID: 2088777917}
+  - {fileID: 1662878912}
+  - {fileID: 1060993471}
+  - {fileID: 660416067}
   - {fileID: 2037194624}
   - {fileID: 656945501}
-  - {fileID: 1060993471}
-  - {fileID: 1662878912}

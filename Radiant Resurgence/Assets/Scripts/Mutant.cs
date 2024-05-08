@@ -17,6 +17,8 @@ public class Mutant : MonoBehaviour
     [Header("Positional Data")]
     [SerializeField] Vector3 homePosition = Vector3.zero;
     [SerializeField] private Rigidbody2D rb;
+    public Animator animator;
+
 
     [Header("Flavor")]
     [SerializeField] public Sprite upSprite;
@@ -26,6 +28,7 @@ public class Mutant : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private GameManager gameManager;
+    [SerializeField] private AudioSource hitmarkerSFX;
 
     [Header("Red Flash")]
     [SerializeField] private float flashDuration = 0.2f;
@@ -75,6 +78,7 @@ public class Mutant : MonoBehaviour
     //Function for mutant to take damage
     public void TakeDamage(float damage)
     {
+        hitmarkerSFX.Play();
         StartCoroutine(FlashRed());
         currentHealth -= damage;
         if (currentHealth <= 0){

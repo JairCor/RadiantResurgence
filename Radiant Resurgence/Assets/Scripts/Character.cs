@@ -19,6 +19,7 @@ public class Character : MonoBehaviour
     [SerializeField] private GameObject body;
     Rigidbody2D rb;
     [SerializeField] private float ar15OffsetX = 0.1f;
+    public Animator animator;
 
     [Header("Sprites")]
     [SerializeField] public Sprite upSprite;
@@ -54,10 +55,10 @@ public class Character : MonoBehaviour
     {
         direction = direction.normalized;
         rb.velocity = direction * speed;
-
         // Flipping sprite based on movement direction
         if (rb.velocity.x < 0)
         {
+            animator.SetFloat("Speed", 1);
             ar15Renderer.enabled = true;
             spriteRenderer.sprite = leftSprite;
             ar15Renderer.flipX = true;
@@ -65,6 +66,7 @@ public class Character : MonoBehaviour
         }
         else if (rb.velocity.x > 0)
         {
+            animator.SetFloat("Speed", 1);
             ar15Renderer.enabled = true;
             spriteRenderer.sprite = rightSprite;
             ar15Renderer.flipX = false;
@@ -72,13 +74,18 @@ public class Character : MonoBehaviour
         }
         else if(rb.velocity.y < 0)
         {
+            animator.SetFloat("Speed", 1);
             ar15Renderer.enabled = false;
             spriteRenderer.sprite = downSprite;
         }
         else if(rb.velocity.y > 0)
         {
+            animator.SetFloat("Speed", 1);
             ar15Renderer.enabled = false;
             spriteRenderer.sprite = upSprite;
+        }
+        else{
+            animator.SetFloat("Speed", 0);
         }
     }
 
