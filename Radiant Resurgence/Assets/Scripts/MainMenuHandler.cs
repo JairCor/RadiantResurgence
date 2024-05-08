@@ -7,10 +7,10 @@ using TMPro;
 
 public class MainMenuHandler : MonoBehaviour
 {
+    [Header("Game Objects")]
     [SerializeField] private TextMeshProUGUI loadingText;
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject settingsPage;
-
     [SerializeField] Image image;
 
     void Start()
@@ -40,7 +40,6 @@ public class MainMenuHandler : MonoBehaviour
         settingsPage.SetActive(false);
         mainMenu.SetActive(true);
     }
-
 
     IEnumerator WaitAndLoadScene(float seconds, string sceneName)
     {

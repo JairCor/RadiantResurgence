@@ -5,20 +5,25 @@ using UnityEngine;
 public class PlayerInputHandler : MonoBehaviour
 {
     //references to scripts
+    [Header("Game Objects")]
     [SerializeField] Character character;
     [SerializeField] AR15 ar15;
     [SerializeField] private GameObject pausedText; 
     [SerializeField] private GameObject menuButton;
 
 
-    // Update is called once per frame
+    //Capturing player input 
+    // WASD - MOVE
+    // Left click - Shoot
+    // Escape - Pause 
+    // Shift - Sprint
     void Update()
     {
         Vector3 input = Vector3.zero;
         if (Input.GetKeyDown(KeyCode.Escape)){
             TogglePause();
         }
-        if(Time.timeScale == 0f){
+        if(Time.timeScale == 0f){ // pause logic for menu and text to appear, audio is paused as well.
             AudioListener.pause = true;
             pausedText.SetActive(true);
             menuButton.SetActive(true);
@@ -47,7 +52,7 @@ public class PlayerInputHandler : MonoBehaviour
         character.MoveCharacter(input);
     }
 
-    void TogglePause()
+    void TogglePause() // also pause logic
     {
         if (Time.timeScale == 0f){
             Time.timeScale = 1f;

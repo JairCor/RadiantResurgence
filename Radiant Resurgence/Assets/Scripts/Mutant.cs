@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Mutant : MonoBehaviour
 {
     [Header("Stats")]
+    [SerializeField] public string name = "Walker";
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private float damage = 10f;
     [SerializeField] private float damageCooldown = 1f; // To prevent weird unexpected outcomes where you instantly die
@@ -15,16 +16,15 @@ public class Mutant : MonoBehaviour
 
     [Header("Positional Data")]
     [SerializeField] Vector3 homePosition = Vector3.zero;
+    [SerializeField] private Rigidbody2D rb;
 
     [Header("Flavor")]
-    [SerializeField] public string name = "Walker";
     [SerializeField] public Sprite upSprite;
     [SerializeField] public Sprite downSprite;
     [SerializeField] public Sprite leftSprite;
     [SerializeField] public Sprite rightSprite;
-    [SerializeField] private GameObject bulletPrefab; // Reference to the bullet prefab
+    [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private Rigidbody2D rb;
     [SerializeField] private GameManager gameManager;
 
     [Header("Red Flash")]
@@ -49,7 +49,7 @@ public class Mutant : MonoBehaviour
         float horizontalMovement = Mathf.Abs(rb.velocity.x);
         float verticalMovement = Mathf.Abs(rb.velocity.y);
 
-        //Finding dominant movement, then changing sprites accordingly, it was doing weird bugs otherwise
+        //Finding dominant movement, then changing sprites accordingly, it was doing weird bugs otherwise.
         if (horizontalMovement > verticalMovement)
         {
             if (rb.velocity.x < 0)
@@ -66,11 +66,13 @@ public class Mutant : MonoBehaviour
         }
     }
 
+    // State AI function
     public void MoveMutantToward(Vector3 target){
         Vector3 direction = target - transform.position;
         MoveMutant(direction.normalized);
     }
 
+    //Function for mutant to take damage
     public void TakeDamage(float damage)
     {
         StartCoroutine(FlashRed());
@@ -81,11 +83,13 @@ public class Mutant : MonoBehaviour
         }
     }
 
+    //function for when mutant dies
     private void Die()
     {
         Destroy(gameObject);
     }
 
+    // Collision logic
     void OnCollisionEnter2D(Collision2D collision)
     {
         //logic for character and mutant collision

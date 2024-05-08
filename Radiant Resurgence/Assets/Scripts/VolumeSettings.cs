@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class VolumeSettings : MonoBehaviour
 {
+    [Header("Sliders")]
     [SerializeField] private AudioMixer myMixer;
     [SerializeField] private Slider masterSlider;
     [SerializeField] private Slider musicSlider;
@@ -13,6 +14,8 @@ public class VolumeSettings : MonoBehaviour
     [SerializeField] private Slider radioSlider;
     [SerializeField] private Slider windSlider;
 
+
+    //Using PlayerRefs to store their volume settings so they wont reset between scenes
     private void Start()
     {
         if (PlayerPrefs.HasKey("musicVolume")){

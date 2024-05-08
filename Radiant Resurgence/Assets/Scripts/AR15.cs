@@ -12,19 +12,18 @@ public class AR15 : MonoBehaviour
     [SerializeField] private Transform leftBulletSpawnPoint;
     [SerializeField] private float bulletSpeed = 10f;
     [SerializeField] private float bulletLifetime = 1f;
-    [SerializeField] private GameObject flashPrefab;
-    [SerializeField] private AudioSource gunshotAudio;
     
+    [Header("Sprites")]
     // Reference to the character's sprites for orientation
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] public Sprite upSprite;
     [SerializeField] public Sprite downSprite;
     [SerializeField] public Sprite leftSprite;
     [SerializeField] public Sprite rightSprite;
+    [SerializeField] private GameObject flashPrefab;
 
-    void Update()
-    {
-    }
+    [Header("Audio")]
+    [SerializeField] private AudioSource gunshotAudio;
 
     public void Shoot()
     {

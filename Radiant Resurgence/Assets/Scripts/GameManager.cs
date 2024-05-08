@@ -4,13 +4,16 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Wave Info")]
+    private int currentWave = 1;
+    private int totalMutantsKilled = 0;
+    [SerializeField] private int mutantsPerWave = 0;
+    private int mutantsKilledThisRound = 0;
+    
+    [Header("Game Objects")]
     [SerializeField] private MutantSpawner mutantSpawner;
     [SerializeField] private TextMeshProUGUI killCounterText;
     [SerializeField] private TextMeshProUGUI waveCounterText;
-    private int currentWave = 1;
-    private int totalMutantsKilled = 0;
-    private int mutantsPerWave = 0;
-    private int mutantsKilledThisRound = 0;
 
     void Start()
     {
@@ -20,11 +23,12 @@ public class GameManager : MonoBehaviour
     void StartNextWave()
     {
         Debug.Log("Wave " + currentWave + " started!");
-        mutantsPerWave += 2; // Increase mutants per wave for each new wave
+        mutantsPerWave += 2; // Increasing mutants for each wave completed 
         SpawnMutants(mutantsPerWave);
         mutantsKilledThisRound = 0;
     }
 
+    //Controls how many mutants are spawned per wave
     void SpawnMutants(int count)
     {
         for (int i = 0; i < count; i++)
@@ -34,6 +38,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    
+    // Logging info/stats and starting the next wave if player killed all the mutants
     public void OnMutantDeath()
     {
         totalMutantsKilled++;

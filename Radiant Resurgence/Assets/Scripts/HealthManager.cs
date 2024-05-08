@@ -5,20 +5,11 @@ using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
+    [Header("Health")]
     public Image healthBar;
     public float healthAmount = 100f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
+    // These are functions for the character's healthbar 
     public void TakeDamage(float damage)
     {
         healthAmount -= damage;

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Character : MonoBehaviour
 {
     [Header("Stats")]
+    [SerializeField] public string name = "Classified";
     [SerializeField] HealthManager healthManager;
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private float speed = 7f;
@@ -17,25 +18,23 @@ public class Character : MonoBehaviour
     [SerializeField] Vector3 homePosition = Vector3.zero;
     [SerializeField] private GameObject body;
     Rigidbody2D rb;
+    [SerializeField] private float ar15OffsetX = 0.1f;
 
-
-    [Header("Flavor")]
-    [SerializeField] public string name = "Classified";
+    [Header("Sprites")]
     [SerializeField] public Sprite upSprite;
     [SerializeField] public Sprite downSprite;
     [SerializeField] public Sprite leftSprite;
     [SerializeField] public Sprite rightSprite;
-    [SerializeField] private float ar15OffsetX = 0.1f;
-    [SerializeField] private AudioSource damageSFX;
     private SpriteRenderer spriteRenderer;
     private SpriteRenderer ar15Renderer;
-    
     
     [Header("Red Flash")]
     [SerializeField] private float flashDuration = 0.2f;
     private Color originalColor;
     [SerializeField] DeathHandler deathHandler;
     
+    [Header("Audio")]
+    [SerializeField] private AudioSource damageSFX;
 
     void Awake()
     {
@@ -56,7 +55,7 @@ public class Character : MonoBehaviour
         direction = direction.normalized;
         rb.velocity = direction * speed;
 
-        // Flip sprite based on movement direction
+        // Flipping sprite based on movement direction
         if (rb.velocity.x < 0)
         {
             ar15Renderer.enabled = true;
@@ -82,6 +81,7 @@ public class Character : MonoBehaviour
             spriteRenderer.sprite = upSprite;
         }
     }
+
     public void StartSprint()
     {
         speed = originalSpeed * 1.5f;
@@ -91,22 +91,12 @@ public class Character : MonoBehaviour
         speed = originalSpeed;
     }
     
-
-
-
-
-
-    public void Shoot()
-    {
-    }
-    
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
         healthManager.TakeDamage(damage);
         damageSFX.Play();
         StartCoroutine(FlashRed());
-        Debug.Log(currentHealth);
         if (currentHealth <= 0){
             Die();
         }

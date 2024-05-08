@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class MutantSpawner : MonoBehaviour
 {
+    [Header("Spawner Settings")]
     [SerializeField] private GameObject mutantPrefab;
     [SerializeField] private float spawnInterval = 3f;
     [SerializeField] private float spawnXRange = 7f;
     [SerializeField] private float spawnYRange = 2f;
     private GameObject newWalker;
 
-    void Update()
-    {
-    }
-
     public void SpawnWalker()
     {
         Vector3 spawnPosition = GetRandomSpawnPosition();
         newWalker = Instantiate(mutantPrefab, spawnPosition, Quaternion.identity);
-        newWalker.SetActive(true);
+        newWalker.SetActive(true); // Devestating bug fix, Original Walker prefab would die and crash the game because of state AI complications
+        // Had to keep original walker prefab alive, by deactivating and then spawning mutants, then activating them. Weird workaround
+
     }
 
-
+    //Spawning mutant on random position (top or bottom due to map orientation)
     Vector3 GetRandomSpawnPosition()
     {
         // Generate random x and y coordinates within the spawn area
