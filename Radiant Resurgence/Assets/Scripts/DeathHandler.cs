@@ -36,6 +36,7 @@ public class DeathHandler : MonoBehaviour
 
     public void Menu(){
         playerInput.SetActive(false);
+        AudioListener.pause = false;
         SceneManager.LoadScene("Main Menu"); //Take you back to the main menu
         Time.timeScale = 1;
     }
